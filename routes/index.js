@@ -12,3 +12,7 @@ const menuController = require('../controllers/menuController');
 
 router.get('/menu', menuController.getMenu);
 
+const orderController = require('../controllers/orderController');
+
+router.post('/orders', orderController.createOrder);
+
