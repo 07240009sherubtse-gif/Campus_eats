@@ -9,6 +9,7 @@ exports.getRestaurants = async (req, res) => {
 
 exports.getRestaurantMenu = async (req, res) => {
   const restaurant = await Restaurant.getRestaurantById(req.params.id);
+
   if (!restaurant) {
     return res.status(404).json({ error: 'Restaurant not found' });
   }
@@ -16,7 +17,6 @@ exports.getRestaurantMenu = async (req, res) => {
   const menuItems = await MenuItem.getMenuByRestaurant(req.params.id);
   res.json({ restaurant, menuItems });
 };
-
 exports.getOrder = async (req, res) => {
   const order = await Order.getOrderById(req.params.id);
 
@@ -35,7 +35,7 @@ exports.createOrder = async (req, res) => {
     return res.status(400).json({ error: 'Invalid menu item' });
   }
 
-  const order = await Order.createOrder(item.id, item.price);
+  const order = await Order.createOrder(item.id, item.price, req.session.user.id);
   res.status(201).json(order);
 };
 
