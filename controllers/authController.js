@@ -105,3 +105,4 @@ exports.resetPassword = async (req, res) => {
   await User.resetPassword(user.id, password);
   res.redirect('/login');
 };
+
