@@ -11,7 +11,7 @@ async function connectMongo() {
   if (db) return db;
   await client.connect();
   db = client.db(process.env.MONGO_DB_NAME || 'campus_eats_feedback');
-  console.log(Connected to MongoDB (${db.databaseName}));
+  console.log(`Connected to MongoDB (${db.databaseName})`);
   return db;
 }
 
